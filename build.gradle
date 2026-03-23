@@ -1,18 +1,17 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.3.2'
+    id 'org.springframework.boot' version '3.3.3'
     id 'io.spring.dependency-management' version '1.1.6'
 }
 
-group = 'com.userManagement'
+group = 'com.um'
 version = '0.0.1-SNAPSHOT'
-description = 'spring-boot-proj-structure'
 
-//java {
-//    toolchain {
-//        languageVersion = JavaLanguageVersion.of(17)
-//    }
-//}
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
 
 repositories {
     mavenCentral()
@@ -21,11 +20,19 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // method security + BCrypt PasswordEncoder bean
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // Envers (Spring Boot 3 manages versions compatible w/ Hibernate 6)
+    implementation 'org.hibernate.orm:hibernate-envers'
+
+    implementation 'org.springframework.boot:spring-boot-starter-ldap'
+
     runtimeOnly 'com.h2database:h2'
-    implementation 'org.projectlombok:lombok'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
